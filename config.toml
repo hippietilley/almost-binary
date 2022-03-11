@@ -63,9 +63,9 @@ paginate = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Terminal"
-    subtitle = "A simple, retro theme for Hugo"
-    owner = ""
+    title = "Almost Binary"
+    subtitle = "A site for my musings to live on"
+    owner = "Tilley"
     keywords = ""
     copyright = ""
     menuMore = "Show more"

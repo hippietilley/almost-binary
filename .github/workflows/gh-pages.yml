@@ -34,7 +34,7 @@ jobs:
         working-directory: themes/terminal
 
       - name: Build Site
-        run: hugo --minify
+        run: hugo --minify -t terminal
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
