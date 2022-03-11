@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "almostbinary.com"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
