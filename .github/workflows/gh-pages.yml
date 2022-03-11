@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: recursive  # Fetch Hugo themes (true OR recursive)
+          submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
@@ -21,7 +21,15 @@ jobs:
           hugo-version: 'latest'
           # extended: true
 
-      - name: Build
+      - name: Install Theme Dependencies
+        run: npm install
+        working-directory: themes/terminal
+        run: npm i yarn
+        working-directory: themes/terminal
+        run: yarn
+        working-directory: themes/terminal
+
+      - name: Build Site
         run: hugo --minify
 
       - name: Deploy
