@@ -77,7 +77,7 @@ paginate = 5
     missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
-      logoText = "Terminal"
+      logoText = "Almost Binary"
       logoHomeLink = "/"
 
     [languages.en.menu]
@@ -89,3 +89,7 @@ paginate = 5
         identifier = "recipes"
         name = "Recipes"
         url = "/recipes"
+
+[taxonomies]
+    category = 'categories'
+    recipe = 'recipe'
