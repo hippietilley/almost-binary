@@ -4,6 +4,7 @@ date = "{{ .Date }}"
 author = ""
 authorTwitter = "" #do not include @
 cover = ""
+category = ""
 tags = ["", ""]
 keywords = ["", ""]
 description = ""

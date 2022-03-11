@@ -4,6 +4,7 @@ date = "2022-03-10T19:24:06-06:00"
 author = "Tilley"
 authorTwitter = "" #do not include @
 cover = ""
+recipes = ["Gnocchi, Sausage and Peas"]
 tags = ["recipe", "quick", "gnocchi"]
 keywords = ["recipe", "gnocchi"]
 description = "A quick and easy gnocchi dish"
