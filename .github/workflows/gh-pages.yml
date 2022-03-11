@@ -21,11 +21,15 @@ jobs:
           hugo-version: 'latest'
           # extended: true
 
-      - name: Install Theme Dependencies
+      - name: Install NPM
         run: npm install
         working-directory: themes/terminal
+
+      - name: Install Yarn
         run: npm i yarn
         working-directory: themes/terminal
+
+      - name: Install Theme Dependencies
         run: yarn
         working-directory: themes/terminal
 
