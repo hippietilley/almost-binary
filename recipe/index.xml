@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recipe on Almost Binary</title>
+    <link>http://almostbinary.com/recipe/</link>
+    <description>Recent content in Recipe on Almost Binary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Mar 2022 09:43:46 -0600</lastBuildDate><atom:link href="http://almostbinary.com/recipe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Buttered Noodles</title>
+      <link>http://almostbinary.com/recipe/buttered-noodles/</link>
+      <pubDate>Fri, 11 Mar 2022 09:43:46 -0600</pubDate>
+      
+      <guid>http://almostbinary.com/recipe/buttered-noodles/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>
