@@ -1,0 +1,64 @@
+services:
+  web:
+    build: .
+    command: 
+      [
+        "/bin/bash",
+        "-c",
+        "source /code/env/bin/activate; exec python /code/almostbinary/manage.py runserver 0.0.0.0:8000",
+      ]
+    volumes:
+      - ./almostbinary:/code/almostbinary
+    env_file:
+      - docker.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+
+  database:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=almostbinary
+      - POSTGRES_PASSWORD=almostbinary
+      - POSTGRES_DB=almostbinary_db
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 54321:5432
+
+
+# services:
+#   almostbinary_db:
+#     image: postgres
+#     volumes:
+#       - type: volume
+#         source: almostbinary_db-data
+#         target: /var/lib/postgresql
+#         volume:
+#           nocopy: true
+#     environment:
+#       - POSTGRES_DB=almostbinary_db
+#       - POSTGRES_USER=almostbinary
+#       - POSTGRES_PASSWORD=almostbinary
+#   web:
+#     build: .
+#     command:
+#       [
+#         "/bin/bash",
+#         "-c",
+#         "source /code/env/bin/activate; exec python /code/almostbinary/manage.py runserver 0.0.0.0:8000",
+#       ]
+#     volumes:
+#       - ../almostbinary:/code/almostbinary
+#     ports:
+#       - "8000:8000"
+#     environment:
+#       - POSTGRES_NAME=almostbinary_db
+#       - POSTGRES_USER=almostbinary
+#       - POSTGRES_PASSWORD=almostbinary
+#     depends_on:
+#       - almostbinary_db
+
+# volumes:
+#   almostbinary_db-data:

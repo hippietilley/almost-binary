@@ -6,6 +6,8 @@ from markdown import markdown
 
 
 class Post(models.Model):
+    TAG_CHOICES = post_tags.TAGS
+
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
@@ -13,6 +15,11 @@ class Post(models.Model):
     rendered_content = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    tags = ArrayField(
+        models.CharField(max_length=128, blank=True, choices=TAG_CHOICES),
+        blank=True,
+        default=list,
+    )
 
     class Meta:
         ordering = ["-published_date"]

@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import re_path
 from . import views
 
+app_name = "portfolio"
+
 urlpatterns = [
-    path('', views.cv, name='cv'),
-    path('', views.about, name='about'),
+    re_path(r"^cv/$", views.cv, name='cv'),
+    re_path(r"^about/$", views.about, name='about'),
 ]

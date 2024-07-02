@@ -9,12 +9,13 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import os
+import dj_database_url
 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
     'blog',
     'portfolio',
     'recipebook',
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'almostbinary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,13 +77,12 @@ WSGI_APPLICATION = 'almostbinary.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# Use the Postgres URL from an environment variable to specify the default DB.
+#
+# Format: 'postgresql://user:password@hostname:PORT/database_name'
+DJ_URL = os.environ.get("DBSTRING", "").strip()
+DATABASES = {"default": dj_database_url.config(default=DJ_URL)}
+DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
 
 
 # Password validation
@@ -118,7 +119,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.environ.get("STATIC_ROOT_DIR", "")
+if DEBUG:
+    STATIC_ROOT = os.environ.get("STATIC_ROOT_DIR", "collected_static_files")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
+]
+COMPRESS_PRECOMPILERS = [
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+]
+if not DEBUG:
+    #COMPRESS_OFFLINE = True
+    LIBSASS_OUTPUT_STYLE = 'compressed'
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

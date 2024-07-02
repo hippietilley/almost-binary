@@ -33,4 +33,5 @@ build/
 env*/
 collected_static_files/
 docker/config.json
-
+postgres-data/
+data/db/
